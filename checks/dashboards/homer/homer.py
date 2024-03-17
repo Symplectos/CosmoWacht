@@ -25,7 +25,7 @@ from helpers import Credentials, CredentialLocations
 class Homer:
     __instance = None
     _credentials = Credentials(CredentialLocations.homer)
-    _healthCheckURL = f'{_credentials.url}:{_credentials.port}' if _credentials.port != '' \
+    _healthCheckURL = f'{_credentials.url}:{_credentials.port}' if _credentials.port is not None \
                       else f'{_credentials.url}'
 
     ####################################################################################################################

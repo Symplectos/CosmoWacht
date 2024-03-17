@@ -25,7 +25,7 @@ from helpers import Credentials, CredentialLocations
 class MeiliSearch:
     __instance = None
     _credentials = Credentials(CredentialLocations.meiliSearch)
-    _healthCheckURL = f'{_credentials.url}:{_credentials.port}/health' if _credentials.port != '' \
+    _healthCheckURL = f'{_credentials.url}:{_credentials.port}/health' if _credentials.port is not None \
                       else f'{_credentials.url}/health'
 
     ####################################################################################################################

@@ -25,7 +25,7 @@ from helpers import Credentials, CredentialLocations
 class Zitadel:
     __instance = None
     _credentials = Credentials(CredentialLocations.zitadel)
-    _healthCheckURL = f'{_credentials.url}:{_credentials.port}/healthz' if _credentials.port != '' \
+    _healthCheckURL = f'{_credentials.url}:{_credentials.port}/healthz' if _credentials.port is not None \
                       else f'{_credentials.url}/healthz'
 
     ####################################################################################################################

@@ -26,8 +26,11 @@ class Credentials:
     ####################################################################################################################
     # CONSTRUCTOR ######################################################################################################
     ####################################################################################################################
-    def __init__(self, filename: pathlib.Path) -> None:
+    def __init__(self, filename: pathlib.Path):
         try:
+            # variables
+            self._url, self._port, self._username = None, None, None
+
             # create the credential parser
             configFile = configparser.ConfigParser()
 
@@ -35,9 +38,17 @@ class Credentials:
             configFile.read(filename)
 
             # get the data
-            self._username = configFile.get('credentials', 'username')
-            self._url = configFile.get('instance', 'url')
-            self._port = configFile.getint('instance', 'port')
+            if configFile.has_section('credentials'):
+                # get the credentials
+                if configFile.has_option('credentials', 'username'):
+                    self._username = configFile.get('credentials', 'username')
+
+            if configFile.has_section('instance'):
+                # get instance
+                if configFile.has_option('instance', 'url'):
+                    self._url = configFile.get('instance', 'url')
+                if configFile.has_option('instance', 'port'):
+                    self._port = configFile.getint('instance', 'port')
 
         except configparser.Error as e:
             raise e
@@ -53,33 +64,9 @@ class Credentials:
         return self._username
 
     @property
-    def password(self) -> str:
-        return self._password
-
-    @property
-    def service(self) -> str:
-        return self._service
-
-    @property
     def url(self) -> str:
         return self._url
 
     @property
     def port(self) -> int:
         return self._port
-
-    @property
-    def sslRootCA(self) -> str:
-        return self._sslRootCA
-
-    @property
-    def sslCertificate(self) -> str:
-        return self._sslCertificate
-
-    @property
-    def sslKey(self) -> str:
-        return self._sslKey
-
-    @property
-    def database(self) -> str:
-        return self._database
