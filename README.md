@@ -1,0 +1,3 @@
+# CosmoWacht
+
+Status Page
