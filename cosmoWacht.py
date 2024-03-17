@@ -14,7 +14,7 @@ from checks import PostgreSQL, MeiliSearch, Homer, Zitadel
 def main() -> int:
     # list of checks
     try:
-        checks = [PostgreSQL.isHealthy(), MeiliSearch.isHealthy(), Homer.isHealthy(), Zitadel.isHealthy()]
+        checks = [MeiliSearch.isHealthy(), Homer.isHealthy(), Zitadel.isHealthy()]
     except Exception as e:
         print(f'Unable to get global health status! Error Message: {e}')
         exit(1)

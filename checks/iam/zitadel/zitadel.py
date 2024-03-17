@@ -36,16 +36,19 @@ class Zitadel:
         try:
             # get health status
             result = requests.get(cls._healthCheckURL)
-            result.raise_for_status()
 
-            # parse result
-            result = result.json()
-            if result.get('status').lower() == 'serving':
-                isHealthy = True
-                message = 'Zitadel is operational.'
-            else:
+            if not result.status_code == 200:
                 isHealthy = False
                 message = 'Zitadel is not operational.'
+            else:
+                # parse result
+                result = result.json()
+                if result.get('status').lower() == 'serving':
+                    isHealthy = True
+                    message = 'Zitadel is operational.'
+                else:
+                    isHealthy = False
+                    message = 'Zitadel is not operational.'
 
             # return dict
             return {'isReady': isHealthy, 'message': message}
