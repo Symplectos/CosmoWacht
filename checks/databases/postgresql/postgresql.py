@@ -39,10 +39,10 @@ class PostgreSQL:
             options = (f'postgresql://{cls._credentials.username}@'
                        f'{cls._credentials.url}:{cls._credentials.port}') if cls._credentials.port is not None else \
                 f'postgresql://{cls._credentials.username}@{cls._credentials.url}'
-            result = subprocess.run([command, '-d', options], check=False)
+            result = subprocess.run([command, '-d', options], check=True)
 
             # parse result
-            match result:
+            match result.returncode:
                 case 0:
                     # the server is accepting connections normally
                     isReady = True
