@@ -37,7 +37,7 @@ class PostgreSQL:
             # use subprocess to query the PostgreSQL status
             command = 'pg_isready'
             options = (f"-d 'postgresql://{cls._credentials.username}@"
-                       f"{cls._credentials.url}:{cls._credentials.port}/{cls._credentials.database}'")
+                       f"{cls._credentials.url}:{cls._credentials.port}'")
             result = subprocess.call([command, options])
 
             # parse result

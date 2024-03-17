@@ -36,14 +36,8 @@ class Credentials:
 
             # get the data
             self._username = configFile.get('credentials', 'username')
-            self._password = configFile.get('credentials', 'password')
-            self._service = configFile.get('instance', 'service')
             self._url = configFile.get('instance', 'url')
             self._port = configFile.getint('instance', 'port')
-            self._sslRootCA = configFile.get('ssl', 'rootCA')
-            self._sslCertificate = configFile.get('ssl', 'certificate')
-            self._sslKey = configFile.get('ssl', 'key')
-            self._database = configFile.get('database', 'name')
 
         except configparser.Error as e:
             raise e
