@@ -39,7 +39,7 @@ class PostgreSQL:
             options = (f"-d 'postgresql://{cls._credentials.username}@"
                        f"{cls._credentials.url}:{cls._credentials.port}'") if cls._credentials.port is not None else \
                 f"-d 'postgresql://{cls._credentials.username}@{cls._credentials.url}'"
-            result = subprocess.run([command, options])
+            result = subprocess.run([command, options], check=True)
 
             # parse result
             match result:
@@ -62,6 +62,9 @@ class PostgreSQL:
 
             # return dict
             return {'isHealthy': isReady, 'message': message}
+
+        except subprocess.SubprocessError:
+            return {'isHealthy': False, 'message': 'pg_isready not available'}
 
         except Exception as e:
             raise RuntimeError(f'PostgreSQL Health Check - Error message: {e}')
