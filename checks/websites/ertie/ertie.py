@@ -1,8 +1,8 @@
 """
-Homer
+Ertie
 =====
 
-Class to check Homer status.
+Class to check Ertië status.
 
 :Authors:
     Gilles Bellot
@@ -22,9 +22,9 @@ from helpers import Credentials, CredentialLocations
 ########################################################################################################################
 # CLASS ################################################################################################################
 ########################################################################################################################
-class Homer:
+class Ertie:
     __instance = None
-    _credentials = Credentials(CredentialLocations.homer)
+    _credentials = Credentials(CredentialLocations.ertie)
     _healthCheckURL = f'{_credentials.url}:{_credentials.port}' if _credentials.port is not None \
                       else f'{_credentials.url}'
 
@@ -39,21 +39,21 @@ class Homer:
 
             if not result.status_code == 200:
                 isHealthy = False
-                message = 'Homer is dead.'
+                message = 'Ertië is dead.'
             else:
                 # parse result
                 if result.status_code == 200:
                     isHealthy = True
-                    message = 'Homer is alive.'
+                    message = 'Ertië is alive.'
                 else:
-                    isHealthy = False
-                    message = 'Homer is dead.'
+                    isHealthy = True
+                    message = 'Ertië is dead.'
 
             # return dict
             return {'isHealthy': isHealthy, 'message': message, 'serviceName': cls.__name__}
 
         except Exception as e:
-            raise RuntimeError(f'Homer Health Check - Error message: {e}')
+            raise RuntimeError(f'Ertië Health Check - Error message: {e}')
 
     ####################################################################################################################
     # CONSTRUCTOR ######################################################################################################

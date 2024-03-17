@@ -34,6 +34,7 @@ class CredentialLocations:
     meiliSearch = _pathToCredentials.joinpath('meilisearch.creds')
     zitadel = _pathToCredentials.joinpath('zitadel.creds')
     homer = _pathToCredentials.joinpath('homer.creds')
+    ertie = _pathToCredentials.joinpath('ertie.creds')
 
     ####################################################################################################################
     # CONSTRUCTOR ######################################################################################################

@@ -51,7 +51,7 @@ class Zitadel:
                     message = 'Zitadel is not operational.'
 
             # return dict
-            return {'isReady': isHealthy, 'message': message}
+            return {'isHealthy': isHealthy, 'message': message, 'serviceName': cls.__name__}
 
         except Exception as e:
             raise RuntimeError(f'Zitadel Health Check - Error message: {e}')

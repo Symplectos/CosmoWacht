@@ -61,13 +61,15 @@ class PostgreSQL:
                     message = 'The PostGreSQL could not be contacted.'
 
             # return dict
-            return {'isHealthy': isReady, 'message': message}
+            return {'isHealthy': isReady, 'message': message, 'serviceName': cls.__name__}
 
         except FileNotFoundError:
-            return {'isHealthy': False, 'message': 'The PostgreSQL client is not installed.'}
+            return {'isHealthy': False, 'message': 'The PostgreSQL client is not installed.',
+                    'serviceName': cls.__name__}
 
         except subprocess.CalledProcessError:
-            return {'isHealthy': False, 'message': 'The PostgreSQL client is not installed.'}
+            return {'isHealthy': False, 'message': 'The PostgreSQL client is not installed.',
+                    'serviceName': cls.__name__}
 
         except Exception as e:
             raise RuntimeError(f'PostgreSQL Health Check - Error message: {e}')
