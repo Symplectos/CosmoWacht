@@ -2,15 +2,14 @@
 # IMPORTS ##############################################################################################################
 ########################################################################################################################
 import datetime
-
 from checks import PostgreSQL, MeiliSearch, Homer, Zitadel, Ertie
+from conf import Config
+import pathlib
 
 ########################################################################################################################
 # DEFINITIONS ##########################################################################################################
 ########################################################################################################################
 servicesToCheck = [Ertie, Homer, Zitadel, PostgreSQL, MeiliSearch]
-title = 'CosmoWacht'
-header = 'Global Status'
 
 
 ########################################################################################################################
@@ -28,12 +27,18 @@ def main() -> int:
     for check in checks:
         print(check)
 
-    with open("index.html", "w", encoding='utf-8') as html:
+    # get file path
+    if Config.webroot == '':
+        htmlFile = pathlib.Path().absolute().joinpath('index.html')
+    else:
+        htmlFile = pathlib.Path(Config.webroot).joinpath('index.html')
+
+    with htmlFile.open("w", encoding='utf-8') as html:
         # HTML definitions
         html.write('<!DOCTYPE html><html lang="en">')
         html.write('\n<head>\n\t<meta charset="UTF-8">\n\t<meta name="viewport" content="width=device-width, '
                    'initial-scale=1, shrink-to-fit=no">')
-        html.write(f'\n\t<title>{title}</title>')
+        html.write(f'\n\t<title>{Config.title}</title>')
 
         # CSS
         html.write('\n\t<style>')
@@ -55,7 +60,7 @@ def main() -> int:
         html.write("\n\t<div class='container'>")
 
         # global status
-        html.write(f'\n\t\t<h1>{header}</h1>')
+        html.write(f'\n\t\t<h1>{Config.header}</h1>')
         if nUnhealthyServices == 0:
             html.write(f"\n\t\t<ul><li class='panel success-bg'>All Systems Operational</li></ul>")
         else:
