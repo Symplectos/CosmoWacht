@@ -63,7 +63,7 @@ class PostgreSQL:
             # return dict
             return {'isHealthy': isReady, 'message': message}
 
-        except subprocess.SubprocessError:
+        except subprocess.CalledProcessError:
             return {'isHealthy': False, 'message': 'pg_isready not available'}
 
         except Exception as e:
