@@ -50,7 +50,7 @@ class Ertie:
                     message = 'Ertië is dead.'
 
             # return dict
-            return {'isHealthy': isHealthy, 'message': message, 'serviceName': cls.__name__}
+            return {'isHealthy': isHealthy, 'message': message, 'serviceName': 'Ertië'}
 
         except Exception as e:
             raise RuntimeError(f'Ertië Health Check - Error message: {e}')
