@@ -64,11 +64,11 @@ class PostgreSQL:
             return {'isHealthy': isReady, 'message': message, 'serviceName': cls.__name__}
 
         except FileNotFoundError:
-            return {'isHealthy': False, 'message': 'The PostgreSQL client is not installed.',
+            return {'isHealthy': False, 'message': 'PostgreSQL: File not found.',
                     'serviceName': cls.__name__}
 
         except subprocess.CalledProcessError:
-            return {'isHealthy': False, 'message': 'The PostgreSQL client is not installed.',
+            return {'isHealthy': False, 'message': 'PostgreSQL: CalledProcessError',
                     'serviceName': cls.__name__}
 
         except Exception as e:
