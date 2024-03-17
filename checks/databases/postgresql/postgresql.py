@@ -39,7 +39,7 @@ class PostgreSQL:
             options = (f"-d 'postgresql://{cls._credentials.username}@"
                        f"{cls._credentials.url}:{cls._credentials.port}'") if cls._credentials.port is not None else \
                 f"-d 'postgresql://{cls._credentials.username}@{cls._credentials.url}'"
-            result = subprocess.call([command, options])
+            result = subprocess.run([command, options])
 
             # parse result
             match result:
@@ -56,7 +56,7 @@ class PostgreSQL:
                     isReady = False
                     message = 'The PostgreSQL server does not respond to connection attempts.'
                 case 3:
-                    # there was no atteptm made, i.e. due to false connection parameters
+                    # there was no attempt made, i.e. due to false connection parameters
                     isReady = True
                     message = 'The PostGreSQL could not be contacted.'
 

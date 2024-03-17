@@ -31,6 +31,7 @@ class CredentialLocations:
 
     # DB CONNECTIONS ###################################################################################################
     postgreSQL = _pathToCredentials.joinpath('postgresql.creds')
+    print(postgreSQL)
     meiliSearch = _pathToCredentials.joinpath('meilisearch.creds')
     zitadel = _pathToCredentials.joinpath('zitadel.creds')
     homer = _pathToCredentials.joinpath('homer.creds')
