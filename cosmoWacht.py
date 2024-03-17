@@ -28,7 +28,7 @@ def main() -> int:
     for check in checks:
         print(check)
 
-    with open("index.html", "w") as html:
+    with open("index.html", "w", encoding='utf-8') as html:
         # HTML definitions
         html.write('<!DOCTYPE html><html lang="en">')
         html.write('\n<head>\n\t<meta charset="UTF-8">\n\t<meta name="viewport" content="width=device-width, '
