@@ -37,7 +37,7 @@ class MeiliSearch:
             # get health status
             result = requests.get(cls._healthCheckURL)
 
-            if not result.status_code == 200:
+            if result.status_code != 200:
                 isHealthy = False
                 message = 'MeiliSearch is not operational.'
             else:
@@ -50,7 +50,6 @@ class MeiliSearch:
                     isHealthy = False
                     message = 'MeiliSearch is not operational.'
 
-            # return dict
             return {'isHealthy': isHealthy, 'message': message, 'serviceName': cls.__name__}
 
         except Exception as e:

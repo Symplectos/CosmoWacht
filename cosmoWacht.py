@@ -59,15 +59,15 @@ def main() -> int:
         html.write('\n<body>')
         html.write("\n\t<div class='container'>")
 
-        # global status
+        # define the global status
         html.write(f'\n\t\t<h1>{Config.header}</h1>')
         if nUnhealthyServices == 0:
-            html.write(f"\n\t\t<ul><li class='panel success-bg'>All Systems Operational</li></ul>")
+            html.write("\n\t\t<ul><li class='panel success-bg'>All Systems Operational</li></ul>")
         else:
             html.write(f"\n\t\t<ul><li class='panel failed-bg'>Outages: {nUnhealthyServices}</li></ul>")
 
         # services
-        html.write(f'\n\t\t<h1>Services</h1>')
+        html.write('\n\t\t<h1>Services</h1>')
         html.write('\n\t\t<ul>')
         for check in checks:
             if check.get('isHealthy') is True:
@@ -78,7 +78,7 @@ def main() -> int:
                 html.write(f"\n\t\t\t<li>{check.get('serviceName')} "
                            f"<span class='small failed'>{check.get('message')}</span>"
                            f"<span class='status failed'>Disrupted</span></li>")
-        html.write(f'\n\t\t<ul>')
+        html.write('\n\t\t<ul>')
 
         # last check
         html.write(f'\n\t\t<p class=small>Last Check: {datetime.datetime.now().replace(microsecond=0)}</p>')
@@ -86,7 +86,7 @@ def main() -> int:
         # incidents
 
         # close html tags
-        html.write(f'\n\t</div>\n</body>\n</html>')
+        html.write('\n\t</div>\n</body>\n</html>')
 
     return 0
 

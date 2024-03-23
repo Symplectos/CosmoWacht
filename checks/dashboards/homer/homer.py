@@ -37,19 +37,13 @@ class Homer:
             # get health status
             result = requests.get(cls._healthCheckURL)
 
-            if not result.status_code == 200:
+            if result.status_code != 200:
                 isHealthy = False
                 message = 'Homer is dead.'
             else:
-                # parse result
-                if result.status_code == 200:
-                    isHealthy = True
-                    message = 'Homer is alive.'
-                else:
-                    isHealthy = False
-                    message = 'Homer is dead.'
+                isHealthy = True
+                message = 'Homer is alive.'
 
-            # return dict
             return {'isHealthy': isHealthy, 'message': message, 'serviceName': cls.__name__}
 
         except Exception as e:

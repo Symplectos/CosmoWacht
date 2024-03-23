@@ -60,7 +60,6 @@ class PostgreSQL:
                     isReady = True
                     message = 'The PostGreSQL could not be contacted.'
 
-            # return dict
             return {'isHealthy': isReady, 'message': message, 'serviceName': cls.__name__}
 
         except FileNotFoundError:
